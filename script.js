@@ -134,8 +134,7 @@ const buttonsKey = [
 const textarea = document.createElement('textarea');
 textarea.className = 'textarea';
 const instruction = document.createElement('div');
-instruction.innerHTML = 'Language change: left Ctrl + left Alt';
-
+instruction.innerHTML = 'Language change: left Ctrl + left Alt <br> Keyboard created at Windows operating system';
 const keyboard = document.createElement('div');
 keyboard.className = 'keyboard';
 function getLanguage() {
@@ -287,9 +286,11 @@ function keyDown(code) {
       break;
     case 'ShiftRight':
     case 'ShiftLeft':
-      PushButton(currentButton);
-      isShiftPush = true;
-      updateButtons();
+      if (!isShiftPush) {
+        PushButton(currentButton);
+        isShiftPush = true;
+        updateButtons();
+      }
       break;
     case 'ControlLeft':
       PushButton(currentButton);
