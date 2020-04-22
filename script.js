@@ -1,3 +1,9 @@
+const CAPS_LOCK = 'CapsLock';
+const SHIFT_RIGHT = 'ShiftRight';
+const SHIFT_LEFT = 'ShiftLeft';
+const CONTROL_LEFT = 'ControlLeft';
+const ALT_LEFT = 'AltLeft';
+
 const buttonsKey = [
   {
     code: 'Backquote', engLayout: '`', engLayoutShift: '~', rusLayout: 'ё', rusLayoutShift: 'Ё',
@@ -58,7 +64,7 @@ const buttonsKey = [
   }, {
     code: 'Delete', isSpecial: true, engLayout: 'DEL',
   }, {
-    code: 'CapsLock', isSpecial: true, engLayout: 'Caps Lock',
+    code: CAPS_LOCK, isSpecial: true, engLayout: 'Caps Lock',
   }, {
     code: 'KeyA', engLayout: 'a', engLayoutShift: 'A', rusLayout: 'ф', rusLayoutShift: 'Ф',
   }, {
@@ -84,7 +90,7 @@ const buttonsKey = [
   }, {
     code: 'Enter', isSpecial: true, engLayout: 'Enter',
   }, {
-    code: 'ShiftLeft', isSpecial: true, engLayout: 'Shift',
+    code: SHIFT_LEFT, isSpecial: true, engLayout: 'Shift',
   }, {
     code: 'KeyZ', engLayout: 'z', engLayoutShift: 'Z', rusLayout: 'я', rusLayoutShift: 'Я',
   }, {
@@ -108,13 +114,13 @@ const buttonsKey = [
   }, {
     code: 'ArrowUp', engLayout: '▲', engLayoutShift: '▲', rusLayout: '▲', rusLayoutShift: '▲',
   }, {
-    code: 'ShiftRight', isSpecial: true, engLayout: 'Shift',
+    code: SHIFT_RIGHT, isSpecial: true, engLayout: 'Shift',
   }, {
-    code: 'ControlLeft', isSpecial: true, engLayout: 'Ctrl',
+    code: CONTROL_LEFT, isSpecial: true, engLayout: 'Ctrl',
   }, {
     code: 'MetaLeft', isSpecial: true, engLayout: 'Win',
   }, {
-    code: 'AltLeft', isSpecial: true, engLayout: 'Alt',
+    code: ALT_LEFT, isSpecial: true, engLayout: 'Alt',
   }, {
     code: 'Space', isSpecial: true, engLayout: ' ',
   }, {
@@ -129,7 +135,6 @@ const buttonsKey = [
     code: 'ControlRight', isSpecial: true, engLayout: 'Ctrl',
   },
 ];
-
 
 const textarea = document.createElement('textarea');
 textarea.className = 'textarea';
@@ -281,25 +286,25 @@ function changeLanguage() {
 function keyDown(code) {
   const currentButton = document.getElementById(code);
   switch (code) {
-    case 'CapsLock':
+    case CAPS_LOCK:
       updateIsUpperCase(currentButton);
       break;
-    case 'ShiftRight':
-    case 'ShiftLeft':
+    case SHIFT_RIGHT:
+    case SHIFT_LEFT:
       if (!isShiftPush) {
         PushButton(currentButton);
         isShiftPush = true;
         updateButtons();
       }
       break;
-    case 'ControlLeft':
+    case CONTROL_LEFT:
       PushButton(currentButton);
       isControlLeft = true;
       if (isAltLeft) {
         changeLanguage();
       }
       break;
-    case 'AltLeft':
+    case ALT_LEFT:
       PushButton(currentButton);
       isAltLeft = true;
       if (isControlLeft) {
@@ -315,19 +320,19 @@ function keyDown(code) {
 function keyUp(code) {
   const currentButton = document.getElementById(code);
   switch (code) {
-    case 'CapsLock':
+    case CAPS_LOCK:
       break;
-    case 'ShiftRight':
-    case 'ShiftLeft':
+    case SHIFT_RIGHT:
+    case SHIFT_LEFT:
       removePushedButton(currentButton);
       isShiftPush = false;
       updateButtons();
       break;
-    case 'ControlLeft':
+    case CONTROL_LEFT:
       removePushedButton(currentButton);
       isControlLeft = false;
       break;
-    case 'AltLeft':
+    case ALT_LEFT:
       removePushedButton(currentButton);
       isAltLeft = false;
       break;
